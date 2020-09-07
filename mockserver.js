@@ -341,6 +341,11 @@ const mockserver = {
       if (queryIndex > 0) {
         path = url.substring(0, queryIndex);
       }
+      
+      // remove function parameters from the path for now (easiest work around)
+      var reMatchBrackets = /\(([^)]+)\)/;
+      path = path.replace(reMatchBrackets, "");
+
 
       if (req.headers && mockserver.headers.length) {
         mockserver.headers.forEach(function(header) {
